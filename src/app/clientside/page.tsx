@@ -1,7 +1,9 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
+import Image from "next/image"; // Import the Image component from Next.js
 
 //TYPE DEFINE.....
 type Product = {
@@ -68,10 +70,12 @@ const ClientSide = () => {
                   >
                     <div className="flex flex-col items-center">
                       {product.image && (
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.title}
-                          className="w-48 h-48 object-cover mb-4"
+                          width={100} // Specify the width
+                          height={70} // Specify the height
+                          className="object-cover mb-4"
                         />
                       )}
                       <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 text-center">
@@ -84,9 +88,8 @@ const ClientSide = () => {
                           {[...Array(5)].map((_, index) => {
                             const rating = Math.round(product.rating.rate);
                             return (
-                              <span  key={index}
-                              className={index < rating ? "text-yellow-400" : "text-gray-400"}>
-                              <FaStar />
+                              <span key={index} className={index < rating ? "text-yellow-400" : "text-gray-400"}>
+                                <FaStar />
                               </span>
                             );
                           })}
